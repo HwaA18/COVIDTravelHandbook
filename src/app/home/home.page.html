@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      COVID Travel Handbook
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,33 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="medium">COVID Travel Handbook</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <ion-searchbar [(ngModel)]="searched" inputmode="search" autocorrect="on" placeholder="Enter a Country"></ion-searchbar>
+
+   <div class="ion-padding">
+    <ion-button color="primary" type="submit" (click)="getInfo()" expand="block">Submit</ion-button>
   </div>
+
+  <ion-card *ngIf="showResults">
+    <ion-card-header>
+      <ion-card-subtitle>COVID Data for</ion-card-subtitle>
+      <ion-card-title>{{ searchString }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>
+        Total Cases:                          {{ totalCases }} <br>
+        New Cases in the Past Day:            {{ newCases }} <br>
+        Deaths:                               {{ deaths }} <br>
+        New Deaths in the Past Day:           {{ newDeaths }} <br>
+        Recovered:                            {{ recovered }} <br>
+        Active Cases:                         {{ active }} <br>
+        Critical Cases:                       {{ critical }} <br>
+        Number of Cases per 1 Million People: {{ casesPer1Mill }} <br>
+      </p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
