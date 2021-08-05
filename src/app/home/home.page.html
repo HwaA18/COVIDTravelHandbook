@@ -38,4 +38,17 @@
       </p>
     </ion-card-content>
   </ion-card>
+
+  <ion-card *ngIf="showResults">
+    <ion-card-header>
+      <ion-card-subtitle>News For </ion-card-subtitle>
+      <ion-card-title>{{ searchString }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>
+        Place
+      </p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
