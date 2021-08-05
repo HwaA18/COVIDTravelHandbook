@@ -19,23 +19,50 @@
     <ion-button color="primary" type="submit" (click)="getInfo()" expand="block">Submit</ion-button>
   </div>
 
-  <ion-card *ngIf="showResults">
-    <ion-card-header>
-      <ion-card-subtitle>COVID Data for</ion-card-subtitle>
-      <ion-card-title>{{ searchString }}</ion-card-title>
-    </ion-card-header>
+  <div *ngIf="showResults">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>COVID Data for</ion-card-subtitle>
+        <ion-card-title>{{ searchString }}</ion-card-title>
+      </ion-card-header>
 
-    <ion-card-content>
-      <p>
-        Total Cases:                          {{ totalCases }} <br>
-        New Cases in the Past Day:            {{ newCases }} <br>
-        Deaths:                               {{ deaths }} <br>
-        New Deaths in the Past Day:           {{ newDeaths }} <br>
-        Recovered:                            {{ recovered }} <br>
-        Active Cases:                         {{ active }} <br>
-        Critical Cases:                       {{ critical }} <br>
-        Number of Cases per 1 Million People: {{ casesPer1Mill }} <br>
-      </p>
-    </ion-card-content>
-  </ion-card>
+      <ion-card-content>
+        <p>
+          Total Cases:                          {{ totalCases }} <br>
+          New Cases in the Past Day:            {{ newCases }} <br>
+          Deaths:                               {{ deaths }} <br>
+          New Deaths in the Past Day:           {{ newDeaths }} <br>
+          Recovered:                            {{ recovered }} <br>
+          Active Cases:                         {{ active }} <br>
+          Critical Cases:                       {{ critical }} <br>
+          Number of Cases per 1 Million People: {{ casesPer1Mill }} <br>
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Border Restriction News For </ion-card-subtitle>
+        <ion-card-title>{{ searchString }}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card *ngFor="let new of news; index as i" (click)="openWindow(new['url'])">
+      <div class="pic">
+        <img src="{{ new['urlToImage'] }}"/>
+      </div>
+      <ion-card-header>
+        <ion-card-title style="font-size:17px">{{ new['title'] }}</ion-card-title>
+        <ion-card-subtitle> {{ new['author'] }} </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>
+          {{ new['description'] }}
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+  
 </ion-content>
